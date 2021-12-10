@@ -143,7 +143,7 @@ class _ColorButtonState extends State<ColorButton> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Select Color'.i18n),
+        title: Text('Wybierz kolor'),
         backgroundColor: Theme.of(context).canvasColor,
         content: SingleChildScrollView(
           child: MaterialPicker(

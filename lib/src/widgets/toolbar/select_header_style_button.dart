@@ -95,6 +95,9 @@ class _SelectHeaderStyleButtonState extends State<SelectHeaderStyleButton> {
                           theme.primaryIconTheme.color)
                       : (widget.iconTheme?.iconUnselectedColor ??
                           theme.iconTheme.color),
+                  fontWeight: _valueToText[_value] == _valueString[index]
+                      ? FontWeight.bold
+                      : null,
                 ),
               ),
             ),
