@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../models/documents/attribute.dart';
 import '../../models/documents/style.dart';
-import '../../models/themes/quill_icon_theme.dart';
 import '../controller.dart';
 import '../toolbar.dart';
 
@@ -11,14 +10,11 @@ class SelectHeaderStyleButton extends StatefulWidget {
   const SelectHeaderStyleButton({
     required this.controller,
     this.iconSize = kDefaultIconSize,
-    this.iconTheme,
     Key? key,
   }) : super(key: key);
 
   final QuillController controller;
   final double iconSize;
-
-  final QuillIconTheme? iconTheme;
 
   @override
   _SelectHeaderStyleButtonState createState() =>
@@ -67,7 +63,7 @@ class _SelectHeaderStyleButtonState extends State<SelectHeaderStyleButton> {
       mainAxisSize: MainAxisSize.min,
       children: List.generate(4, (index) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: !kIsWeb ? 1.0 : 5.0),
+          padding: const EdgeInsets.symmetric(horizontal: !kIsWeb ? 1.0 : 5.0),
           child: ConstrainedBox(
             constraints: BoxConstraints.tightFor(
               width: widget.iconSize * kIconButtonFactor,
@@ -81,20 +77,16 @@ class _SelectHeaderStyleButtonState extends State<SelectHeaderStyleButton> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2)),
               fillColor: _valueToText[_value] == _valueString[index]
-                  ? (widget.iconTheme?.iconSelectedFillColor ??
-                      theme.toggleableActiveColor)
-                  : (widget.iconTheme?.iconUnselectedFillColor ??
-                      theme.canvasColor),
+                  ? theme.toggleableActiveColor
+                  : theme.canvasColor,
               onPressed: () =>
                   widget.controller.formatSelection(_valueAttribute[index]),
               child: Text(
                 _valueString[index],
                 style: style.copyWith(
                   color: _valueToText[_value] == _valueString[index]
-                      ? (widget.iconTheme?.iconSelectedColor ??
-                          theme.primaryIconTheme.color)
-                      : (widget.iconTheme?.iconUnselectedColor ??
-                          theme.iconTheme.color),
+                      ? Colors.white
+                      : theme.iconTheme.color,
                   fontWeight: _valueToText[_value] == _valueString[index]
                       ? FontWeight.bold
                       : null,

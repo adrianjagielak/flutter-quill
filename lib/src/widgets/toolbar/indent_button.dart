@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../flutter_quill.dart';
+import 'quill_icon_button.dart';
 
 class IndentButton extends StatefulWidget {
   const IndentButton({
@@ -8,7 +9,6 @@ class IndentButton extends StatefulWidget {
     required this.controller,
     required this.isIncrease,
     this.iconSize = kDefaultIconSize,
-    this.iconTheme,
     Key? key,
   }) : super(key: key);
 
@@ -16,8 +16,6 @@ class IndentButton extends StatefulWidget {
   final double iconSize;
   final QuillController controller;
   final bool isIncrease;
-
-  final QuillIconTheme? iconTheme;
 
   @override
   _IndentButtonState createState() => _IndentButtonState();
@@ -27,17 +25,14 @@ class _IndentButtonState extends State<IndentButton> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    final iconColor =
-        widget.iconTheme?.iconUnselectedColor ?? theme.iconTheme.color;
-    final iconFillColor =
-        widget.iconTheme?.iconUnselectedFillColor ?? theme.canvasColor;
+    final iconColor = theme.iconTheme.color;
+    final fillColor = theme.canvasColor;
     return QuillIconButton(
       highlightElevation: 0,
       hoverElevation: 0,
       size: widget.iconSize * 1.77,
       icon: Icon(widget.icon, size: widget.iconSize, color: iconColor),
-      fillColor: iconFillColor,
+      fillColor: fillColor,
       onPressed: () {
         final indent = widget.controller
             .getSelectionStyle()

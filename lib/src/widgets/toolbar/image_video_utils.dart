@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../models/documents/nodes/embed.dart';
-import '../../translations/toolbar.i18n.dart';
+import '../../utils/media_pick_setting.dart';
 import '../controller.dart';
 import '../toolbar.dart';
 
@@ -26,7 +26,7 @@ class ImageVideoUtils {
                   Icons.collections,
                   color: Colors.orangeAccent,
                 ),
-                label: Text('Gallery'.i18n),
+                label: const Text('Gallery'),
                 onPressed: () => Navigator.pop(ctx, MediaPickSetting.Gallery),
               ),
               TextButton.icon(
@@ -34,7 +34,7 @@ class ImageVideoUtils {
                   Icons.link,
                   color: Colors.cyanAccent,
                 ),
-                label: Text('Link'.i18n),
+                label: const Text('Link'),
                 onPressed: () => Navigator.pop(ctx, MediaPickSetting.Link),
               )
             ],

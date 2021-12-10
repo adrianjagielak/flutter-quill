@@ -3,11 +3,10 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../../models/documents/attribute.dart';
 import '../../models/documents/style.dart';
-import '../../models/themes/quill_icon_theme.dart';
-import '../../translations/toolbar.i18n.dart';
 import '../../utils/color.dart';
 import '../controller.dart';
 import '../toolbar.dart';
+import 'quill_icon_button.dart';
 
 /// Controls color styles.
 ///
@@ -19,7 +18,6 @@ class ColorButton extends StatefulWidget {
     required this.controller,
     required this.background,
     this.iconSize = kDefaultIconSize,
-    this.iconTheme,
     Key? key,
   }) : super(key: key);
 
@@ -27,7 +25,6 @@ class ColorButton extends StatefulWidget {
   final double iconSize;
   final bool background;
   final QuillController controller;
-  final QuillIconTheme? iconTheme;
 
   @override
   _ColorButtonState createState() => _ColorButtonState();
@@ -101,20 +98,20 @@ class _ColorButtonState extends State<ColorButton> {
     final theme = Theme.of(context);
     final iconColor = _isToggledColor && !widget.background && !_isWhite
         ? stringToColor(_selectionStyle.attributes['color']!.value)
-        : (widget.iconTheme?.iconUnselectedColor ?? theme.iconTheme.color);
+        : theme.iconTheme.color;
 
     final iconColorBackground =
         _isToggledBackground && widget.background && !_isWhitebackground
             ? stringToColor(_selectionStyle.attributes['background']!.value)
-            : (widget.iconTheme?.iconUnselectedColor ?? theme.iconTheme.color);
+            : theme.iconTheme.color;
 
     final fillColor = _isToggledColor && !widget.background && _isWhite
         ? stringToColor('#ffffff')
-        : (widget.iconTheme?.iconUnselectedFillColor ?? theme.canvasColor);
+        : theme.canvasColor;
     final fillColorBackground =
         _isToggledBackground && widget.background && _isWhitebackground
             ? stringToColor('#ffffff')
-            : (widget.iconTheme?.iconUnselectedFillColor ?? theme.canvasColor);
+            : theme.canvasColor;
 
     return QuillIconButton(
       highlightElevation: 0,
@@ -143,7 +140,7 @@ class _ColorButtonState extends State<ColorButton> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Wybierz kolor'),
+        title: const Text('Wybierz kolor'),
         backgroundColor: Theme.of(context).canvasColor,
         content: SingleChildScrollView(
           child: MaterialPicker(

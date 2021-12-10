@@ -4,6 +4,7 @@ import 'dart:io' as io;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:tuple/tuple.dart';
 
@@ -150,15 +151,15 @@ class _QuillSimpleViewerState extends State<QuillSimpleViewer>
       link: _toolbarLayerLink,
       child: Semantics(
         child: _SimpleViewer(
-            document: _doc,
-            textDirection: _textDirection,
-            startHandleLayerLink: _startHandleLayerLink,
-            endHandleLayerLink: _endHandleLayerLink,
-            onSelectionChanged: _nullSelectionChanged,
-            scrollBottomInset: widget.scrollBottomInset,
-            padding: widget.padding,
-            cursorController: _cursorCont,
-            children: _buildChildren(_doc, context)),
+          document: _doc,
+          textDirection: _textDirection,
+          startHandleLayerLink: _startHandleLayerLink,
+          endHandleLayerLink: _endHandleLayerLink,
+          onSelectionChanged: _nullSelectionChanged,
+          scrollBottomInset: widget.scrollBottomInset,
+          padding: widget.padding,
+          children: _buildChildren(_doc, context),
+        ),
       ),
     );
 
@@ -315,13 +316,10 @@ class _SimpleViewer extends MultiChildRenderObjectWidget {
     required this.endHandleLayerLink,
     required this.onSelectionChanged,
     required this.scrollBottomInset,
-    required this.cursorController,
-    this.offset,
     this.padding = EdgeInsets.zero,
     Key? key,
   }) : super(key: key, children: children);
 
-  final ViewportOffset? offset;
   final Document document;
   final TextDirection textDirection;
   final LayerLink startHandleLayerLink;
@@ -329,25 +327,23 @@ class _SimpleViewer extends MultiChildRenderObjectWidget {
   final TextSelectionChangedHandler onSelectionChanged;
   final double scrollBottomInset;
   final EdgeInsetsGeometry padding;
-  final CursorCont cursorController;
 
   @override
   RenderEditor createRenderObject(BuildContext context) {
     return RenderEditor(
-        offset,
-        null,
-        textDirection,
-        scrollBottomInset,
-        padding,
-        document,
-        const TextSelection(baseOffset: 0, extentOffset: 0),
-        false,
-        // hasFocus,
-        onSelectionChanged,
-        startHandleLayerLink,
-        endHandleLayerLink,
-        const EdgeInsets.fromLTRB(4, 4, 4, 5),
-        cursorController);
+      null,
+      textDirection,
+      scrollBottomInset,
+      padding,
+      document,
+      const TextSelection(baseOffset: 0, extentOffset: 0),
+      false,
+      // hasFocus,
+      onSelectionChanged,
+      startHandleLayerLink,
+      endHandleLayerLink,
+      const EdgeInsets.fromLTRB(4, 4, 4, 5),
+    );
   }
 
   @override

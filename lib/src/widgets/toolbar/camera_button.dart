@@ -1,10 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../models/themes/quill_icon_theme.dart';
 import '../controller.dart';
 import '../toolbar.dart';
 import 'image_video_utils.dart';
+import 'quill_icon_button.dart';
 
 class CameraButton extends StatelessWidget {
   const CameraButton({
@@ -17,7 +18,6 @@ class CameraButton extends StatelessWidget {
     this.filePickImpl,
     this.webImagePickImpl,
     this.webVideoPickImpl,
-    this.iconTheme,
     Key? key,
   }) : super(key: key);
 
@@ -38,22 +38,16 @@ class CameraButton extends StatelessWidget {
 
   final FilePickImpl? filePickImpl;
 
-  final QuillIconTheme? iconTheme;
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final iconColor = iconTheme?.iconUnselectedColor ?? theme.iconTheme.color;
-    final iconFillColor =
-        iconTheme?.iconUnselectedFillColor ?? (fillColor ?? theme.canvasColor);
-
     return QuillIconButton(
-      icon: Icon(icon, size: iconSize, color: iconColor),
+      icon: Icon(icon, size: iconSize, color: theme.iconTheme.color),
       highlightElevation: 0,
       hoverElevation: 0,
       size: iconSize * 1.77,
-      fillColor: iconFillColor,
+      fillColor: fillColor ?? theme.canvasColor,
       onPressed: () => _handleCameraButtonTap(context, controller,
           onImagePickCallback: onImagePickCallback,
           onVideoPickCallback: onVideoPickCallback,

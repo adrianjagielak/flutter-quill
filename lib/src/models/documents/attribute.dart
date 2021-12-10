@@ -22,7 +22,6 @@ class Attribute<T> {
     Attribute.small.key: Attribute.small,
     Attribute.underline.key: Attribute.underline,
     Attribute.strikeThrough.key: Attribute.strikeThrough,
-    Attribute.inlineCode.key: Attribute.inlineCode,
     Attribute.font.key: Attribute.font,
     Attribute.size.key: Attribute.size,
     Attribute.link.key: Attribute.link,
@@ -39,7 +38,6 @@ class Attribute<T> {
     Attribute.height.key: Attribute.height,
     Attribute.style.key: Attribute.style,
     Attribute.token.key: Attribute.token,
-    Attribute.script.key: Attribute.script,
   });
 
   static final BoldAttribute bold = BoldAttribute();
@@ -51,8 +49,6 @@ class Attribute<T> {
   static final UnderlineAttribute underline = UnderlineAttribute();
 
   static final StrikeThroughAttribute strikeThrough = StrikeThroughAttribute();
-
-  static final InlineCodeAttribute inlineCode = InlineCodeAttribute();
 
   static final FontAttribute font = FontAttribute(null);
 
@@ -85,8 +81,6 @@ class Attribute<T> {
   static final StyleAttribute style = StyleAttribute(null);
 
   static final TokenAttribute token = TokenAttribute('');
-
-  static final ScriptAttribute script = ScriptAttribute('');
 
   static final Set<String> inlineKeys = {
     Attribute.bold.key,
@@ -246,10 +240,6 @@ class StrikeThroughAttribute extends Attribute<bool> {
   StrikeThroughAttribute() : super('strike', AttributeScope.INLINE, true);
 }
 
-class InlineCodeAttribute extends Attribute<bool> {
-  InlineCodeAttribute() : super('code', AttributeScope.INLINE, true);
-}
-
 class FontAttribute extends Attribute<String?> {
   FontAttribute(String? val) : super('font', AttributeScope.INLINE, val);
 }
@@ -314,9 +304,4 @@ class StyleAttribute extends Attribute<String?> {
 
 class TokenAttribute extends Attribute<String> {
   TokenAttribute(String val) : super('token', AttributeScope.IGNORE, val);
-}
-
-// `script` is supposed to be inline attribute but it is not supported yet
-class ScriptAttribute extends Attribute<String> {
-  ScriptAttribute(String val) : super('script', AttributeScope.IGNORE, val);
 }

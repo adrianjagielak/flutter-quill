@@ -60,8 +60,6 @@ class _ArrowIndicatedButtonListState extends State<ArrowIndicatedButtonList>
   }
 
   void _handleScroll() {
-    if (!mounted) return;
-
     setState(() {
       _showLeftArrow =
           _controller.position.minScrollExtent != _controller.position.pixels;

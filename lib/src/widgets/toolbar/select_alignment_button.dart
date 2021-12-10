@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../models/documents/attribute.dart';
 import '../../models/documents/style.dart';
-import '../../models/themes/quill_icon_theme.dart';
 import '../controller.dart';
 import '../toolbar.dart';
 
@@ -11,22 +10,11 @@ class SelectAlignmentButton extends StatefulWidget {
   const SelectAlignmentButton({
     required this.controller,
     this.iconSize = kDefaultIconSize,
-    this.iconTheme,
-    this.showLeftAlignment,
-    this.showCenterAlignment,
-    this.showRightAlignment,
-    this.showJustifyAlignment,
     Key? key,
   }) : super(key: key);
 
   final QuillController controller;
   final double iconSize;
-
-  final QuillIconTheme? iconTheme;
-  final bool? showLeftAlignment;
-  final bool? showCenterAlignment;
-  final bool? showRightAlignment;
-  final bool? showJustifyAlignment;
 
   @override
   _SelectAlignmentButtonState createState() => _SelectAlignmentButtonState();
@@ -50,41 +38,32 @@ class _SelectAlignmentButtonState extends State<SelectAlignmentButton> {
   @override
   Widget build(BuildContext context) {
     final _valueToText = <Attribute, String>{
-      if (widget.showLeftAlignment!)
-        Attribute.leftAlignment: Attribute.leftAlignment.value!,
-      if (widget.showCenterAlignment!)
-        Attribute.centerAlignment: Attribute.centerAlignment.value!,
-      if (widget.showRightAlignment!)
-        Attribute.rightAlignment: Attribute.rightAlignment.value!,
-      if (widget.showJustifyAlignment!)
-        Attribute.justifyAlignment: Attribute.justifyAlignment.value!,
+      Attribute.leftAlignment: Attribute.leftAlignment.value!,
+      Attribute.centerAlignment: Attribute.centerAlignment.value!,
+      Attribute.rightAlignment: Attribute.rightAlignment.value!,
+      Attribute.justifyAlignment: Attribute.justifyAlignment.value!,
     };
 
     final _valueAttribute = <Attribute>[
-      if (widget.showLeftAlignment!) Attribute.leftAlignment,
-      if (widget.showCenterAlignment!) Attribute.centerAlignment,
-      if (widget.showRightAlignment!) Attribute.rightAlignment,
-      if (widget.showJustifyAlignment!) Attribute.justifyAlignment
+      Attribute.leftAlignment,
+      Attribute.centerAlignment,
+      Attribute.rightAlignment,
+      Attribute.justifyAlignment
     ];
     final _valueString = <String>[
-      if (widget.showLeftAlignment!) Attribute.leftAlignment.value!,
-      if (widget.showCenterAlignment!) Attribute.centerAlignment.value!,
-      if (widget.showRightAlignment!) Attribute.rightAlignment.value!,
-      if (widget.showJustifyAlignment!) Attribute.justifyAlignment.value!,
+      Attribute.leftAlignment.value!,
+      Attribute.centerAlignment.value!,
+      Attribute.rightAlignment.value!,
+      Attribute.justifyAlignment.value!,
     ];
 
     final theme = Theme.of(context);
 
-    final buttonCount = ((widget.showLeftAlignment!) ? 1 : 0) +
-        ((widget.showCenterAlignment!) ? 1 : 0) +
-        ((widget.showRightAlignment!) ? 1 : 0) +
-        ((widget.showJustifyAlignment!) ? 1 : 0);
-
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: List.generate(buttonCount, (index) {
+      children: List.generate(4, (index) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: !kIsWeb ? 1.0 : 5.0),
+          padding: const EdgeInsets.symmetric(horizontal: !kIsWeb ? 1.0 : 5.0),
           child: ConstrainedBox(
             constraints: BoxConstraints.tightFor(
               width: widget.iconSize * kIconButtonFactor,
@@ -98,10 +77,8 @@ class _SelectAlignmentButtonState extends State<SelectAlignmentButton> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2)),
               fillColor: _valueToText[_value] == _valueString[index]
-                  ? (widget.iconTheme?.iconSelectedFillColor ??
-                      theme.toggleableActiveColor)
-                  : (widget.iconTheme?.iconUnselectedFillColor ??
-                      theme.canvasColor),
+                  ? theme.toggleableActiveColor
+                  : theme.canvasColor,
               onPressed: () => _valueAttribute[index] == Attribute.leftAlignment
                   ? widget.controller
                       .formatSelection(Attribute.clone(Attribute.align, null))
@@ -116,10 +93,8 @@ class _SelectAlignmentButtonState extends State<SelectAlignmentButton> {
                             : Icons.format_align_justify,
                 size: widget.iconSize,
                 color: _valueToText[_value] == _valueString[index]
-                    ? (widget.iconTheme?.iconSelectedColor ??
-                        theme.primaryIconTheme.color)
-                    : (widget.iconTheme?.iconUnselectedColor ??
-                        theme.iconTheme.color),
+                    ? theme.primaryIconTheme.color
+                    : theme.iconTheme.color,
               ),
             ),
           ),
