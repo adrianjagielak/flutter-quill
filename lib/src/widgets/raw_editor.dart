@@ -239,6 +239,18 @@ class RawEditorState extends EditorState
         RawEditorStateSelectionDelegateMixin {
   final GlobalKey _editorKey = GlobalKey();
 
+  // Start of Fix for Flutter 3.0.0 missing implementation
+  @override
+  void insertTextPlaceholder(Size size) {
+    // do nothing for now
+  }
+
+  @override
+  void removeTextPlaceholder() {
+    // do nothing for now
+  }
+  // End of Fix for Flutter 3.0.0 missing implementation
+
   KeyboardVisibilityController? _keyboardVisibilityController;
   StreamSubscription<bool>? _keyboardVisibilitySubscription;
   bool _keyboardVisible = false;
