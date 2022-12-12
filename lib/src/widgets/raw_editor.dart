@@ -251,6 +251,13 @@ class RawEditorState extends EditorState
   }
   // End of Fix for Flutter 3.0.0 missing implementation
 
+  // Start of Fix for Flutter 3.4.0 missing implementation
+  @override
+  void performSelector(String selectorName) {
+    // do nothing for now
+  }
+  // End of Fix for Flutter 3.4.0 missing implementation
+
   KeyboardVisibilityController? _keyboardVisibilityController;
   StreamSubscription<bool>? _keyboardVisibilitySubscription;
   bool _keyboardVisible = false;
