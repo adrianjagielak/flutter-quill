@@ -260,7 +260,7 @@ class RawEditorState extends EditorState
 
   // Start of Fix for Flutter 3.7.0 missing implementation
   @override
-  void didChangeInputControl(TextInputControl? oldControl, TextInputControl? newControl) {
+  void didChangeInputControl(dynamic oldControl, dynamic newControl) {
     // do nothing for now
   }
   // End of Fix for Flutter 3.7.0 missing implementation
