@@ -596,6 +596,7 @@ class _QuillEditorSelectionGestureDetectorBuilder
       if (isAppleOS(_platform)) {
         switch (details.kind) {
           case PointerDeviceKind.mouse:
+          case PointerDeviceKind.trackpad:
           case PointerDeviceKind.stylus:
           case PointerDeviceKind.invertedStylus:
             // Precise devices should place the cursor at a precise position.
@@ -1559,8 +1560,7 @@ class RenderEditor extends RenderEditableContainerBox
   }
 }
 
-class QuillVerticalCaretMovementRun
-    extends BidirectionalIterator<TextPosition> {
+class QuillVerticalCaretMovementRun extends Iterator<TextPosition> {
   QuillVerticalCaretMovementRun._(
     this._editor,
     this._currentTextPosition,

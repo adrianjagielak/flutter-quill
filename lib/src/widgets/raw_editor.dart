@@ -265,6 +265,13 @@ class RawEditorState extends EditorState
   }
   // End of Fix for Flutter 3.7.0 missing implementation
 
+  // Start of Fix for Flutter 3.10.0 missing implementation
+  @override
+  void insertContent(KeyboardInsertedContent content) {
+    // do nothing for now
+  }
+  // End of Fix for Flutter 3.10.0 missing implementation
+
   KeyboardVisibilityController? _keyboardVisibilityController;
   StreamSubscription<bool>? _keyboardVisibilitySubscription;
   bool _keyboardVisible = false;
