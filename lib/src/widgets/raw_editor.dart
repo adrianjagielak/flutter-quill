@@ -272,7 +272,7 @@ class RawEditorState extends EditorState
 
   // Start of Fix for Flutter 3.10.0 missing implementation
   @override
-  void insertContent(KeyboardInsertedContent content) {
+  void insertContent(dynamic content) {
     // do nothing for now
   }
   // End of Fix for Flutter 3.10.0 missing implementation
