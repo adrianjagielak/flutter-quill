@@ -251,12 +251,17 @@ class RawEditorState extends EditorState
   }
   // End of Fix for Flutter 3.0.0 missing implementation
 
-  // Start of Fix for Flutter 3.4.0 missing implementation
   @override
   void performSelector(String selectorName) {
-    // do nothing for now
+    final intent = intentForMacOSSelector(selectorName);
+
+    if (intent != null) {
+      final primaryContext = primaryFocus?.context;
+      if (primaryContext != null) {
+        Actions.invoke(primaryContext, intent);
+      }
+    }
   }
-  // End of Fix for Flutter 3.4.0 missing implementation
 
   // Start of Fix for Flutter 3.7.0 missing implementation
   @override
