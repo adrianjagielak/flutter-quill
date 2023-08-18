@@ -276,6 +276,11 @@ class RawEditorState extends EditorState
     // do nothing for now
   }
   // End of Fix for Flutter 3.10.0 missing implementation
+  
+  // Start of Fix for Flutter 3.13.0 missing implementation
+  @override
+  bool get liveTextInputEnabled => false;
+  // End of Fix for Flutter 3.10.0 missing implementation
 
   KeyboardVisibilityController? _keyboardVisibilityController;
   StreamSubscription<bool>? _keyboardVisibilitySubscription;
