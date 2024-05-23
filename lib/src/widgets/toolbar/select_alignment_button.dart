@@ -98,11 +98,11 @@ class _SelectAlignmentButtonState extends State<SelectAlignmentButton> {
               visualDensity: VisualDensity.compact,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2)),
-              fillColor: _valueToText[_value] == _valueString[index]
-                  ? (widget.iconTheme?.iconSelectedFillColor ??
-                      theme.toggleableActiveColor)
-                  : (widget.iconTheme?.iconUnselectedFillColor ??
-                      theme.canvasColor),
+              // fillColor: _valueToText[_value] == _valueString[index]
+              //     ? (widget.iconTheme?.iconSelectedFillColor ??
+              //         theme.toggleableActiveColor)
+              //     : (widget.iconTheme?.iconUnselectedFillColor ??
+              //         theme.canvasColor),
               onPressed: () => _valueAttribute[index] == Attribute.leftAlignment
                   ? widget.controller
                       .formatSelection(Attribute.clone(Attribute.align, null))

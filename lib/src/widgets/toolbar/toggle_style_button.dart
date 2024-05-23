@@ -121,29 +121,30 @@ Widget defaultToggleStyleButtonBuilder(
   double iconSize = kDefaultIconSize,
   QuillIconTheme? iconTheme,
 ]) {
-  final theme = Theme.of(context);
-  final isEnabled = onPressed != null;
-  final iconColor = isEnabled
-      ? isToggled == true
-          ? (iconTheme?.iconSelectedColor ??
-              theme
-                  .primaryIconTheme.color) //You can specify your own icon color
-          : (iconTheme?.iconUnselectedColor ?? theme.iconTheme.color)
-      : (iconTheme?.disabledIconColor ?? theme.disabledColor);
-  final fill = isEnabled
-      ? isToggled == true
-          ? (iconTheme?.iconSelectedFillColor ??
-              theme.toggleableActiveColor) //Selected icon fill color
-          : (iconTheme?.iconUnselectedFillColor ??
-              theme.canvasColor) //Unselected icon fill color :
-      : (iconTheme?.disabledIconFillColor ??
-          (fillColor ?? theme.canvasColor)); //Disabled icon fill color
-  return QuillIconButton(
-    highlightElevation: 0,
-    hoverElevation: 0,
-    size: iconSize * kIconButtonFactor,
-    icon: Icon(icon, size: iconSize, color: iconColor),
-    fillColor: fill,
-    onPressed: onPressed,
-  );
+  return Text("get lost");
+  // final theme = Theme.of(context);
+  // final isEnabled = onPressed != null;
+  // final iconColor = isEnabled
+  //     ? isToggled == true
+  //         ? (iconTheme?.iconSelectedColor ??
+  //             theme
+  //                 .primaryIconTheme.color) //You can specify your own icon color
+  //         : (iconTheme?.iconUnselectedColor ?? theme.iconTheme.color)
+  //     : (iconTheme?.disabledIconColor ?? theme.disabledColor);
+  // final fill = isEnabled
+  //     ? isToggled == true
+  //         ? (iconTheme?.iconSelectedFillColor ??
+  //             theme.toggleableActiveColor) //Selected icon fill color
+  //         : (iconTheme?.iconUnselectedFillColor ??
+  //             theme.canvasColor) //Unselected icon fill color :
+  //     : (iconTheme?.disabledIconFillColor ??
+  //         (fillColor ?? theme.canvasColor)); //Disabled icon fill color
+  // return QuillIconButton(
+  //   highlightElevation: 0,
+  //   hoverElevation: 0,
+  //   size: iconSize * kIconButtonFactor,
+  //   icon: Icon(icon, size: iconSize, color: iconColor),
+  //   fillColor: fill,
+  //   onPressed: onPressed,
+  // );
 }

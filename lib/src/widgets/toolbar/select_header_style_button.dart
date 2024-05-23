@@ -80,11 +80,11 @@ class _SelectHeaderStyleButtonState extends State<SelectHeaderStyleButton> {
               visualDensity: VisualDensity.compact,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2)),
-              fillColor: _valueToText[_value] == _valueString[index]
-                  ? (widget.iconTheme?.iconSelectedFillColor ??
-                      theme.toggleableActiveColor)
-                  : (widget.iconTheme?.iconUnselectedFillColor ??
-                      theme.canvasColor),
+              // fillColor: _valueToText[_value] == _valueString[index]
+              //     ? (widget.iconTheme?.iconSelectedFillColor ??
+              //         theme.toggleableActiveColor)
+              //     : (widget.iconTheme?.iconUnselectedFillColor ??
+              //         theme.canvasColor),
               onPressed: () =>
                   widget.controller.formatSelection(_valueAttribute[index]),
               child: Text(
